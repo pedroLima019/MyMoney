@@ -70,10 +70,24 @@
           </label>
 
           <label for="tipo" class="input-label"
-            >Tipo de Despesa:
+            >Tipo:
             <select name="tipo" id="tipo">
-              <option value="">Saída</option>
-              <option value="">Entrada</option>
+              <option value="" disabled selected>Tipo Despesa</option>
+              <option value="saida">Saída</option>
+              <option value="entrada">Entrada</option>
+            </select>
+          </label>
+
+          <label for="categoria">
+            Categoria: 
+            <select name="categoria" id="categoria">
+              <option value="" disabled selected>Selecione uma Categoria</option>
+              <option value="Alimentação">Alimentação</option>
+              <option value="Transporte">Transporte</option>
+              <option value="Moradia">Moradia</option>
+              <option value="Saúde">Saúde</option>
+              <option value="Lazer">Lazer</option>
+              <option value="Outros">Outros</option>
             </select>
           </label>
         </form>

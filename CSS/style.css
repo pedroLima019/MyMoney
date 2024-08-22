@@ -112,76 +112,73 @@ body {
   margin: 0px 10px;
 }
 
+/* adicionar despesas */
 .expenses-container {
   display: flex;
   flex-direction: column;
-  padding: 5px;
-  width: 100%;
+  justify-content: center;
+  padding: 10px;
 }
 
 .expenses-container h3 {
   font-weight: 300;
+  font-size: 15px;
   color: var(--color-segundary);
-  padding: 10px;
-  font-size: 16px;
+  padding: 5px;
 }
 
 .expenses-content {
   background: var(--color-segundary);
+  padding: 20px 10px;
   display: flex;
   flex-direction: column;
   justify-content: center;
-  align-items: center;
-  padding: 10px;
   border-radius: 20px;
 }
 
 .expenses-content form {
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  width: 100%;
-  padding: 20px;
+  justify-content: space-around;
+  padding: 10px;
 }
 
-.expenses-content .input-label {
-  display: flex;
-  align-items: center;
-  justify-content: center;
+.expenses-content label {
+  font-weight: 500;
+  padding: 5px 0px;
+  margin: 0px 10px;
 }
 
-.expenses-content .input-label input,
+.expenses-content input,
 select {
-  margin: 10px;
-}
-.expenses-content .input-label select {
-  border-radius: 5px;
+  margin: 5px;
 }
 
-.expenses-content .input-label option {
-  font-size: 10px;
-}
-
-.expenses-content .input-label input {
+.expenses-content input {
   border: none;
   border-bottom: 1px solid;
 }
 
-.expenses-content button {
-  padding: 5px;
-  margin: 10px 0px;
+.expenses-content select {
   border: none;
-  width: 100px;
-  background: var(--color-primary);
-  color: var(--color-segundary);
-  font-weight: bold;
-  border-radius: 5px;
-  transition: 0.3s all;
+  border-bottom: 1px solid;
+  outline: none;
 }
 
-.expenses-content button:hover {
-  background: #000;
+.expenses-content button {
+   width: 200px;
+   margin: 0 auto;
+   padding: 5px;
+   border: none;
+   background: var(--color-primary);
+   color: var(--color-segundary);
+   font-weight: bold;
+   border-radius: 5px;
+   transition: .3s ease-in-out;
+}
+
+.expenses-content button:hover{
+   background: black;
 }
 
 .checklist-container {
@@ -222,8 +219,6 @@ select {
   font-weight: 600;
   font-size: 15px;
 }
-
-
 
 .actions button {
   border: none;
