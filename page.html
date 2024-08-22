@@ -18,34 +18,67 @@
     <title>MyMoney- Gerencie suas Depesas</title>
   </head>
   <body>
+    <!-- saldo conta -->
     <section class="balance-container">
-      <h1>MyMoney</h1>
+      <header>
+        <h1>MyMoney</h1>
+      </header>
 
       <div class="balance-acount">
         <p>Saldo da conta</p>
         <h3>R$: 2.000,00</h3>
-        <span class="material-symbols-outlined"> visibility </span>
+        <button aria-label="Toggle balance visibility">
+          <span class="material-symbols-outlined"> visibility </span>
+        </button>
       </div>
 
+      <!-- section entrada e saida de receitas -->
       <section class="balances-view">
-        <div class="balance-enter">
+        <article class="balance-enter">
           <span class="material-symbols-outlined"> arrow_upward </span>
 
           <div class="balance-description">
             <p>Receitas</p>
             <p><strong>R$ 3.000,00</strong></p>
           </div>
-        </div>
+        </article>
 
-        <div class="balance-down">
+        <article class="balance-down">
           <span class="material-symbols-outlined"> arrow_downward</span>
-          
-         <div class="balance-description">
-          <p>Saidas</p>
-          <p><strong>R$ 1.000,00</strong></p>
-         </div>
-        </div>
+          <div class="balance-description">
+            <p>Saidas</p>
+            <p><strong>R$ 1.000,00</strong></p>
+          </div>
+        </article>
       </section>
+    </section>
+
+    <!-- adicionar despesas -->
+    <section class="expenses-container">
+      <h3>Adicionar Despesas</h3>
+
+      <div class="expenses-content">
+        <form action="">
+          <label for="nome" class="input-label">
+            Nome:
+            <input type="text" id="nome" name="nome" />
+          </label>
+
+          <label for="" class="input-label"
+            >Valor:
+            <input type="text" />
+          </label>
+
+          <label for="tipo" class="input-label"
+            >Tipo de Despesa:
+            <select name="tipo" id="tipo">
+              <option value="">Saída</option>
+              <option value="">Entrada</option>
+            </select>
+          </label>
+        </form>
+        <button>Adicionar</button>
+      </div>
     </section>
   </body>
 </html>
