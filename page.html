@@ -26,20 +26,16 @@
 
       <div class="balance-acount">
         <p>Saldo da conta</p>
-        <h3>R$: 2.000,00</h3>
-        <button aria-label="Toggle balance visibility">
-          <span class="material-symbols-outlined"> visibility </span>
-        </button>
+        <h3>R$ 0,00</h3>
       </div>
 
       <!-- section entrada e saida de receitas -->
       <section class="balances-view">
         <article class="balance-enter">
           <span class="material-symbols-outlined"> arrow_upward </span>
-
           <div class="balance-description">
             <p>Receitas</p>
-            <p><strong>R$ 3.000,00</strong></p>
+            <p><strong>R$ 0,00</strong></p>
           </div>
         </article>
 
@@ -47,7 +43,7 @@
           <span class="material-symbols-outlined"> arrow_downward</span>
           <div class="balance-description">
             <p>Saidas</p>
-            <p><strong>R$ 1.000,00</strong></p>
+            <p><strong>R$ 0,00</strong></p>
           </div>
         </article>
       </section>
@@ -56,9 +52,8 @@
     <!-- adicionar despesas -->
     <section class="expenses-container">
       <h3>Adicionar Despesas</h3>
-
       <div class="expenses-content">
-        <form action="">
+        <form id="expense-form">
           <label for="nome" class="input-label">
             Nome:
             <input type="text" id="nome" name="nome" />
@@ -66,7 +61,7 @@
 
           <label for="" class="input-label"
             >Valor:
-            <input type="text" />
+            <input type="text" id="valor" />
           </label>
 
           <label for="tipo" class="input-label"
@@ -79,9 +74,11 @@
           </label>
 
           <label for="categoria">
-            Categoria: 
+            Categoria:
             <select name="categoria" id="categoria">
-              <option value="" disabled selected>Selecione uma Categoria</option>
+              <option value="" disabled selected>
+                Selecione uma Categoria
+              </option>
               <option value="Alimentação">Alimentação</option>
               <option value="Transporte">Transporte</option>
               <option value="Moradia">Moradia</option>
@@ -91,41 +88,24 @@
             </select>
           </label>
         </form>
-        <button>Adicionar</button>
+        <button id="add-expense-btn">Adicionar</button>
       </div>
     </section>
 
-    <!-- lista de tarefas  -->
+    <!-- lista de depesas  -->
     <section class="checklist-container">
-      <h3>Lista de Tarefas</h3>
-
+      <h3>Lista de Despesas</h3>
       <div class="checklist-content">
-       <ul class="expense-list">
-        <li>
-            <span>Aluguel</span>
-            <span class="amount">R$1.500,00</span>
-            <div class="actions">
-                <button class="pay-btn">✅</button>
-                <button class="delete-btn">❌</button>
-            </div>
-        </li>
-        <li>
-            <span>Carro</span>
-            <span class="amount">R$500,00</span>
-            <div class="actions">
-                <button class="pay-btn">✅</button>
-                <button class="delete-btn">❌</button>
-            </div>
-        </li>
-        <li>
-            <span>Escola</span>
-            <span class="amount">R$500,00</span>
-            <div class="actions">
-                <button class="pay-btn">✅</button>
-                <button class="delete-btn">❌</button>
-            </div>
-        </li>
-    </ul>
+        <ul class="expense-list">
+             <!-- Lista de despesas será atualizada aqui -->
+        </ul>
+      </div>
+    </section>
+    <!-- grafico de despesas -->
+    <section class="chart-container">
+      <h3>Despesas por Categoria</h3>
+      <div class="expense-grafic">
+        <canvas id="expenseChart"></canvas>
       </div>
     </section>
   </body>
