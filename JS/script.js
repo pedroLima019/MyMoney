@@ -132,20 +132,19 @@ document.addEventListener("DOMContentLoaded", function () {
 
   function showConfirmationModal(callback) {
     const modal = document.getElementById("confirmation-modal");
-    const successMessage = document.getElementById("success-message")
-    
+    const successMessage = document.getElementById("success-message");
+
     modal.style.display = "flex";
 
     document.getElementById("confirm-yes").onclick = function () {
       modal.style.display = "none";
       callback(true);
 
-      //mostrar mensagem de sucesso
-      successMessage.style.display = "block"
+      successMessage.style.display = "block";
 
-      setTimeout(function(){
-        successMessage.style.display = "none"
-      },3000)
+      setTimeout(function () {
+        successMessage.style.display = "none";
+      }, 3000);
     };
 
     document.getElementById("confirm-no").onclick = function () {
@@ -154,39 +153,106 @@ document.addEventListener("DOMContentLoaded", function () {
     };
   }
 
-  document
-    .querySelector(".expense-list")
-    .addEventListener("click", function (e) {
-      if (e.target.classList.contains("pay-btn")) {
-        showConfirmationModal(function (confirmed) {
-          if (confirmed) {
-            const valueText = e.target
-              .closest("li")
-              .querySelector(".amount")
-              .textContent.replace("R$", "")
-              .replace(",", ".");
-            const value = parseFloat(valueText);
+  //função para pagar despesa
+  function payExpense(listItem, value) {
+    showConfirmationModal(function (confirmed) {
+      if (confirmed) {
+        //subtrair o valor do saldo
+        const saldoElement = document.querySelector(".balance-acount h3");
+        const saldo = parseFloat(
+          saldoElement.textContent.replace("R$", "").replace(",", ".")
+        );
+        saldo -= value;
+        saldoElement.textContent = `R$ ${saldo.toFixed(2).replace(".", ",")}`;
 
-            const saldo = parseFloat(
-              document
-                .querySelector(".balance-acount h3")
-                .textContent.replace("R$", "")
-                .replace(",", ".")
-            );
-            document.querySelector(".balance-acount h3").textContent = `R$ ${(
-              saldo - value
-            )
-              .toFixed(2)
-              .replace(".", ",")}`;
-          }
+        // remover a despesa da lista
+        listItem.remove();
 
-          e.target.closest("li").remove();
-          updateBalance()
-
-          saveToLocalStorage()
-        });
+        //atualizar saldo de saídas
+        updateBalance();
       }
     });
+  }
+
+  // Função para exibir o modal de confirmação
+function showConfirmationModal(callback) {
+  const modal = document.getElementById("confirmation-modal");
+  const successMessage = document.getElementById("success-message");
+
+  modal.style.display = "flex";
+
+  document.getElementById("confirm-yes").onclick = function () {
+      modal.style.display = "none";
+      callback(true);
+
+      // Mostrar a mensagem de sucesso
+      successMessage.style.display = "block";
+
+      // Ocultar a mensagem de sucesso após 3 segundos
+      setTimeout(function () {
+          successMessage.style.display = "none";
+      }, 3000);
+  };
+
+  document.getElementById("confirm-no").onclick = function () {
+      modal.style.display = "none";
+      callback(false);
+  };
+}
+
+// Função para atualizar o saldo e as saídas
+function updateBalance() {
+  const expenses = document.querySelectorAll(".expense-list li");
+  let saidas = 0;
+
+  expenses.forEach((expense) => {
+      const valueText = expense
+          .querySelector(".amount")
+          .textContent.replace("R$", "")
+          .replace(",", ".");
+      const value = parseFloat(valueText);
+      saidas += value;
+  });
+
+  // Atualizar o total de saídas
+  document.querySelector(".balance-down p strong").textContent = `R$ ${saidas
+      .toFixed(2)
+      .replace(".", ",")}`;
+}
+
+// Função para pagar uma despesa
+function payExpense(listItem, value) {
+  showConfirmationModal(function (confirmed) {
+      if (confirmed) {
+          // Subtrair o valor do saldo
+          const saldoElement = document.querySelector(".balance-acount h3");
+          let saldo = parseFloat(saldoElement.textContent.replace("R$", "").replace(",", "."));
+          saldo -= value;
+          saldoElement.textContent = `R$ ${saldo.toFixed(2).replace(".", ",")}`;
+
+          // Remover a despesa da lista
+          listItem.remove();
+
+          // Atualizar o saldo de saídas
+          updateBalance();
+
+          // Salvar no localStorage (se necessário)
+          saveToLocalStorage();
+      }
+  });
+}
+
+// Adicionar evento para pagar uma despesa
+document.querySelector(".expense-list").addEventListener("click", function (e) {
+  if (e.target.classList.contains("pay-btn")) {
+      const listItem = e.target.closest("li");
+      const valueText = listItem.querySelector(".amount").textContent.replace("R$", "").replace(",", ".");
+      const value = parseFloat(valueText);
+
+      payExpense(listItem, value);
+  }
+});
+
 
   function saveToLocalStorage() {
     const expenses = document.querySelectorAll(".expense-list li");
