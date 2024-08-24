@@ -20,7 +20,6 @@ body {
 }
 
 /* SALDO */
-
 .balance-container {
   background: var(--color-segundary);
   width: 100%;
@@ -134,34 +133,35 @@ body {
   justify-content: center;
   align-items: center;
   width: 100%;
+  padding: 10px;
 }
 
 .expenses-content label {
   font-weight: 500;
-  padding: 5px 0px;
-  margin: 0px 10px;
+  padding: 5px;
+  width: 100%;
+  font-size: 16px;
 }
 
-.expenses-content input {
-  border: 1px solid black;
-  border-radius: 5px;
-  outline: 0;
-}
-
+.expenses-content input,
 .expenses-content select {
   border: 1px solid black;
   border-radius: 5px;
   outline: 0;
+  width: 100%;
+  padding: 5px; 
+  box-sizing: border-box; 
+  margin-bottom: 10px; 
 }
-
 .expenses-content button {
   width: 200px;
-  margin: 10px auto;
-  padding: 5px;
+  margin: 5px auto;
+  padding: 8px;
   border: none;
   background: var(--color-primary);
   color: var(--color-segundary);
   font-weight: bold;
+  font-size: 15px;
   border-radius: 5px;
   transition: 0.3s ease-in-out;
 }
@@ -195,29 +195,45 @@ body {
   overflow-y: auto;
 }
 
+/* lista de despesas */
 .expense-list {
   display: flex;
   flex-direction: column;
-  padding: 10px;
+  justify-content: center;
+  padding: 15px;
   width: 100%;
 }
 
 .expense-list li {
   display: flex;
   justify-content: space-between;
+  align-items: center;
   text-align: center;
   margin: 8px;
-  align-items: center;
-  font-weight: 600;
-  font-size: 15px;
+  font-weight: 500;
+  font-size: 18px;
+  padding: 10px;
+  border-bottom: 1px solid #c0c0c0;
+}
+
+.expense-list li > span {
+  flex: 1; 
+  text-align: left; 
+  padding: 0 10px; 
+}
+
+.expense-list li > span:last-child {
+  text-align: right; 
 }
 
 .actions button {
+  margin: 0px 2px;
   border: none;
   padding: 5px;
   background: none;
   font-size: 15px;
 }
+
 
 /* Grafico */
 .chart-container {
@@ -246,6 +262,7 @@ body {
   z-index: 1000;
   left: 0;
   top: 0;
+  padding: 30px;
   width: 100%;
   height: 100%;
   overflow: auto;
@@ -259,9 +276,10 @@ body {
   font-size: 20px;
   font-weight: 600;
 }
+
 .modal-content {
   display: flex;
-  padding: 20px;
+  flex-direction: column;
   text-align: center;
 }
 
@@ -283,6 +301,7 @@ body {
   color: white;
   font-weight: 600;
   width: 80px;
+  cursor: pointer;
 }
 
 #confirm-no {
@@ -298,9 +317,26 @@ body {
   position: fixed;
   top: 20px;
   right: 30px;
-  background-color: var(--color-primary);
   color: white;
   padding: 10px 20px;
   border-radius: 5px;
   z-index: 1000;
+}
+
+/* modal de exclusão  */
+
+#delete-confirm-yes {
+  background-color: #28a745; /* Verde */
+  color: white;
+  font-weight: 600;
+  width: 80px;
+  cursor: pointer;
+}
+
+#delete-confirm-no {
+  background-color: var(--color-red); /* Verde */
+  color: white;
+  font-weight: 600;
+  width: 80px;
+  cursor: pointer;
 }
