@@ -121,7 +121,7 @@ body {
 
 .expenses-content {
   background: var(--color-segundary);
-  padding: 20px 10px;
+  padding: 20px;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -131,8 +131,8 @@ body {
 .expenses-content form {
   display: flex;
   flex-direction: column;
-  justify-content: space-around;
-  padding: 5px;
+  justify-content: center;
+  align-items: center;
 }
 
 .expenses-content label {
@@ -147,19 +147,20 @@ select {
 }
 
 .expenses-content input {
-  border: none;
-  border-bottom: 1px solid;
+  border: 1px solid black;
+  border-radius: 5px;
+  outline: 0;
 }
 
 .expenses-content select {
-  border: none;
-  border-bottom: 1px solid;
-  outline: none;
+  border: 1px solid black;
+  border-radius: 5px;
+  outline: 0;
 }
 
 .expenses-content button {
   width: 200px;
-  margin: 15px auto;
+  margin: 10px auto;
   padding: 5px;
   border: none;
   background: var(--color-primary);
@@ -221,7 +222,7 @@ select {
 }
 
 /* Grafico */
-.chart-container{
+.chart-container {
   display: flex;
   flex-direction: column;
   padding: 5px;
@@ -229,13 +230,79 @@ select {
 }
 
 .chart-container h3 {
-   font-weight: 300;
-   font-size: 15px;
-   padding: 5px;
-   color: var(--color-segundary);
+  font-weight: 300;
+  font-size: 15px;
+  padding: 5px;
+  color: var(--color-segundary);
 }
 
 .expense-grafic {
-   background: var(--color-segundary);
-   border-radius: 20px;
+  background: var(--color-segundary);
+  border-radius: 20px;
+}
+
+/* modal confirmação */
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 1000;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  color: black;
+  background: var(--color-segundary);
+  justify-content: center;
+  align-items: center;
+}
+
+.modal p {
+  font-size: 20px;
+  font-weight: 600;
+}
+.modal-content {
+  display: flex;
+  padding: 20px;
+  text-align: center;
+}
+
+.modal-buttons {
+  margin-top: 20px;
+  display: flex;
+  justify-content: space-around;
+}
+
+.modal-btn {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+#confirm-yes {
+  background-color: #28a745; /* Verde */
+  color: white;
+  font-weight: 600;
+  width: 80px;
+}
+
+#confirm-no {
+  background-color: #dc3545; /* Vermelho */
+  color: white;
+  font-weight: 600;
+  width: 80px;
+}
+
+/* modal mensagem sucesso */
+.success-message {
+  display: none; 
+  position: fixed;
+  top: 20px;
+  right: 30px;
+  background-color:var(--color-primary); 
+  color: white;
+  padding: 10px 20px;
+  border-radius: 5px;
+  z-index: 1000; 
 }

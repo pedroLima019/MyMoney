@@ -97,10 +97,11 @@
       <h3>Lista de Despesas</h3>
       <div class="checklist-content">
         <ul class="expense-list">
-             <!-- Lista de despesas será atualizada aqui -->
+          <!-- Lista de despesas será atualizada aqui -->
         </ul>
       </div>
     </section>
+
     <!-- grafico de despesas -->
     <section class="chart-container">
       <h3>Despesas por Categoria</h3>
@@ -108,5 +109,21 @@
         <canvas id="expenseChart"></canvas>
       </div>
     </section>
+
+    <!-- modal de confirmação -->
+    <div id="confirmation-modal" class="modal">
+      <div id="modal-content">
+        <p>Confirmar pagamento ?</p>
+        <div class="modal-buttons">
+          <button id="confirm-yes" class="modal-btn">Sim</button>
+          <button id="confirm-no" class="modal-btn">Não</button>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Mensagem de sucesso -->
+    <div id="success-message" class="success-message">
+      <p>Pagamento realizado com sucesso!</p>
+    </div>
   </body>
 </html>
