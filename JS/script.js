@@ -132,12 +132,20 @@ document.addEventListener("DOMContentLoaded", function () {
 
   function showConfirmationModal(callback) {
     const modal = document.getElementById("confirmation-modal");
+    const successMessage = document.getElementById("success-message")
     
     modal.style.display = "flex";
 
     document.getElementById("confirm-yes").onclick = function () {
       modal.style.display = "none";
       callback(true);
+
+      //mostrar mensagem de sucesso
+      successMessage.style.display = "block"
+
+      setTimeout(function(){
+        successMessage.style.display = "none"
+      },3000)
     };
 
     document.getElementById("confirm-no").onclick = function () {
