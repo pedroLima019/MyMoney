@@ -133,37 +133,45 @@ body {
   justify-content: center;
   align-items: center;
   width: 100%;
-  padding: 10px;
+  padding: 20px;
 }
 
 .expenses-content label {
   font-weight: 500;
-  padding: 5px;
+  padding: 10px;
   width: 100%;
+  font-size: 18px;
+  font-weight: 500;
+}
+
+.expenses-content input {
   font-size: 16px;
+  outline: 0;
 }
 
 .expenses-content input,
 .expenses-content select {
-  border: 1px solid black;
-  border-radius: 5px;
+  border: none;
+  border: 1px solid rgb(0, 0, 0);
   outline: 0;
   width: 100%;
-  padding: 5px; 
-  box-sizing: border-box; 
-  margin-bottom: 10px; 
+  padding: 5px;
+  border-radius: 10px;
+  margin-bottom: 10px;
 }
+
 .expenses-content button {
   width: 200px;
   margin: 5px auto;
-  padding: 8px;
+  padding: 10px;
   border: none;
   background: var(--color-primary);
   color: var(--color-segundary);
   font-weight: bold;
   font-size: 15px;
-  border-radius: 5px;
+  border-radius: 10px;
   transition: 0.3s ease-in-out;
+  cursor: pointer;
 }
 
 .expenses-content button:hover {
@@ -212,18 +220,18 @@ body {
   margin: 8px;
   font-weight: 500;
   font-size: 18px;
-  padding: 10px;
+  padding: 5px;
   border-bottom: 1px solid #c0c0c0;
 }
 
 .expense-list li > span {
-  flex: 1; 
-  text-align: left; 
-  padding: 0 10px; 
+  flex: 1;
+  text-align: left;
+  padding: 10px;
 }
 
 .expense-list li > span:last-child {
-  text-align: right; 
+  text-align: right;
 }
 
 .actions button {
@@ -233,7 +241,6 @@ body {
   background: none;
   font-size: 15px;
 }
-
 
 /* Grafico */
 .chart-container {
@@ -313,14 +320,18 @@ body {
 
 /* modal mensagem sucesso */
 .success-message {
-  display: none;
   position: fixed;
-  top: 20px;
-  right: 30px;
+  top: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: green;
   color: white;
-  padding: 10px 20px;
   border-radius: 5px;
+  display: none;
   z-index: 1000;
+  padding: 10px;
+  width: max-content;
+  text-align: center;
 }
 
 /* modal de exclusão  */
