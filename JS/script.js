@@ -19,7 +19,6 @@ document.addEventListener("DOMContentLoaded", function () {
       }
 
       if (tipo === "entrada") {
-        // Atualize o saldo
         const saldo = parseFloat(
           document
             .querySelector(".balance-acount h3")
@@ -31,7 +30,6 @@ document.addEventListener("DOMContentLoaded", function () {
           ".balance-acount h3"
         ).textContent = `R$ ${novoSaldo.toFixed(2).replace(".", ",")}`;
 
-        // acumule o valor da receita
         const receitasText = document
           .querySelector(".balance-enter p strong")
           .textContent.replace("R$", "")
@@ -49,6 +47,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
       if (tipo === "saida") {
         const listItem = document.createElement("li");
+        listItem.dataset.categoria = categoria
         listItem.innerHTML = `
           <span>${nome}</span>
           <span class="amount">R$ ${valor.toFixed(2).replace(".", ",")}</span>
@@ -66,122 +65,6 @@ document.addEventListener("DOMContentLoaded", function () {
         document.getElementById("expense-form").reset();
       }
     });
-
-  // Função para atualizar o saldo e as saídas
-  function updateBalance() {
-    const expenses = document.querySelectorAll(".expense-list li");
-    let total = parseFloat(
-      document
-        .querySelector(".balance-acount h3")
-        .textContent.replace("R$", "")
-        .replace(",", ".")
-    );
-
-    let saidas = 0;
-    expenses.forEach((expense) => {
-      const valueText = expense
-        .querySelector(".amount")
-        .textContent.replace("R$", "")
-        .replace(",", ".");
-      const value = parseFloat(valueText);
-
-      saidas += value;
-      total -= value;
-    });
-
-    document.querySelector(".balance-acount h3").textContent = `R$ ${total
-      .toFixed(2)
-      .replace(".", ",")}`;
-
-    document.querySelector(".balance-down p strong").textContent = `R$ ${saidas
-      .toFixed(2)
-      .replace(".", ",")}`;
-  }
-
-  // Função para exibir o modal de confirmação
-  function showConfirmationModal(callback) {
-    const modal = document.getElementById("confirmation-modal");
-    const successMessage = document.getElementById("success-message");
-
-    modal.style.display = "flex";
-
-    document.getElementById("confirm-yes").onclick = function () {
-      modal.style.display = "none";
-      callback(true);
-
-      // Exibir mensagem de sucesso
-      successMessage.style.display = "block";
-
-      // Esconder a mensagem de sucesso após 3 segundos
-      setTimeout(function () {
-        successMessage.style.display = "none";
-      }, 3000);
-    };
-
-    document.getElementById("confirm-no").onclick = function () {
-      modal.style.display = "none";
-      callback(false);
-    };
-  }
-
-  function showDeleteConfirmationModal(callback) {
-    const modal = document.getElementById("delete-confirmation-modal");
-    modal.style.display = "flex";
-
-    document.getElementById("delete-confirm-yes").onclick = function () {
-      modal.style.display = "none";
-      callback(true);
-    };
-
-    document.getElementById("delete-confirm-no").onclick = function () {
-      modal.style.display = "none";
-      callback(false);
-    };
-  }
-
-  // Função para pagar uma despesa
-  function payExpense(listItem) {
-    showConfirmationModal(function (confirmed) {
-      if (confirmed) {
-        // Remove a despesa da lista
-        listItem.remove();
-        // Atualiza o saldo e as saídas
-        updateBalance();
-        showSuccessMessage("Despesa paga com sucesso!", "green");
-        saveToLocalStorage();
-      }
-    });
-  }
-
-  function handleExpenseDeletion(listItem, value) {
-    const saldo = parseFloat(
-      document
-        .querySelector(".balance-acount h3")
-        .textContent.replace("R$", "")
-        .replace(",", ".")
-    );
-    const novoSaldo = saldo + value;
-
-    document.querySelector(".balance-acount h3").textContent = `R$ ${novoSaldo
-      .toFixed(2)
-      .replace(".", ",")}`;
-
-    listItem.remove();
-    updateBalance();
-    saveToLocalStorage();
-    showSuccessMessage("Despesa excluída com sucesso!", "red");
-  }
-
-  function showSuccessMessage(message, color) {
-    const successMessage = document.getElementById("success-message");
-    successMessage.textContent = message;
-    successMessage.style.display = "block";
-    successMessage.style.background = color;
-
-    setTimeout(function () {
-      successMessage.style.display = "none";
-    }, 3000);
-  }
 
   document
     .querySelector(".expense-list")
@@ -221,6 +104,155 @@ document.addEventListener("DOMContentLoaded", function () {
       }
     });
 
+  function updateBalance() {
+    const expenses = document.querySelectorAll(".expense-list li");
+    let total = parseFloat(
+      document
+        .querySelector(".balance-acount h3")
+        .textContent.replace("R$", "")
+        .replace(",", ".")
+    );
+
+    let saidas = 0;
+    expenses.forEach((expense) => {
+      const valueText = expense
+        .querySelector(".amount")
+        .textContent.replace("R$", "")
+        .replace(",", ".");
+      const value = parseFloat(valueText);
+
+      saidas += value;
+      total -= value;
+    });
+
+    document.querySelector(".balance-acount h3").textContent = `R$ ${total
+      .toFixed(2)
+      .replace(".", ",")}`;
+
+    document.querySelector(".balance-down p strong").textContent = `R$ ${saidas
+      .toFixed(2)
+      .replace(".", ",")}`;
+  }
+
+  function showConfirmationModal(callback) {
+    const modal = document.getElementById("confirmation-modal");
+    const successMessage = document.getElementById("success-message");
+
+    modal.style.display = "flex";
+
+    document.getElementById("confirm-yes").onclick = function () {
+      modal.style.display = "none";
+      callback(true);
+
+      successMessage.style.display = "block";
+
+      setTimeout(function () {
+        successMessage.style.display = "none";
+      }, 3000);
+    };
+
+    document.getElementById("confirm-no").onclick = function () {
+      modal.style.display = "none";
+      callback(false);
+    };
+  }
+
+  function showDeleteConfirmationModal(callback) {
+    const modal = document.getElementById("delete-confirmation-modal");
+    modal.style.display = "flex";
+
+    document.getElementById("delete-confirm-yes").onclick = function () {
+      modal.style.display = "none";
+      callback(true);
+    };
+
+    document.getElementById("delete-confirm-no").onclick = function () {
+      modal.style.display = "none";
+      callback(false);
+    };
+  }
+
+  function payExpense(listItem) {
+    showConfirmationModal(function (confirmed) {
+      if (confirmed) {
+        listItem.remove();
+
+        updateBalance();
+        showSuccessMessage("Despesa paga com sucesso!", "green");
+        saveToLocalStorage();
+      }
+    });
+  }
+
+  function handleExpenseDeletion(listItem, value) {
+    const saldo = parseFloat(
+      document
+        .querySelector(".balance-acount h3")
+        .textContent.replace("R$", "")
+        .replace(",", ".")
+    );
+    const novoSaldo = saldo + value;
+
+    document.querySelector(".balance-acount h3").textContent = `R$ ${novoSaldo
+      .toFixed(2)
+      .replace(".", ",")}`;
+
+    listItem.remove();
+    updateBalance();
+    saveToLocalStorage();
+    showSuccessMessage("Despesa excluída com sucesso!", "red");
+  }
+
+  function showSuccessMessage(message, color) {
+    const successMessage = document.getElementById("success-message");
+    successMessage.textContent = message;
+    successMessage.style.display = "block";
+    successMessage.style.background = color;
+
+    setTimeout(function () {
+      successMessage.style.display = "none";
+    }, 3000);
+  }
+
+  function updateOverview() {
+    const expenses = JSON.parse(localStorage.getItem("expenses")) || [];
+    const categories = {};
+
+    // Calcula o total por categoria
+    expenses.forEach((expense) => {
+      const category = expense.categoria;
+      if (!categories[category]) {
+        categories[category] = 0;
+      }
+      categories[category] += expense.valor;
+    });
+
+    const totalExpenses = Object.values(categories).reduce((a, b) => a + b, 0);
+    const overviewBody = document.getElementById("overview-body");
+    overviewBody.innerHTML = "";
+
+    // Adiciona uma linha para cada categoria na tabela
+    for (const category in categories) {
+      const totalGasto = categories[category].toFixed(2).replace(".", ",");
+      const porcentagem = ((categories[category] / totalExpenses) * 100)
+        .toFixed(2)
+        .replace(".", ",");
+
+      const row = `
+        <tr>
+          <td>${category}</td>
+          <td>R$ ${totalGasto}</td>
+          <td>${porcentagem}%</td>
+        </tr>
+      `;
+      overviewBody.innerHTML += row;
+    }
+  }
+
+  // Chama a função após carregar as despesas do localStorage
+  loadFromLocalStorage();
+  updateOverview();
+
   function saveToLocalStorage() {
     const expenses = document.querySelectorAll(".expense-list li");
     const expenseArray = [];
@@ -233,6 +265,9 @@ document.addEventListener("DOMContentLoaded", function () {
           .replace(",", ".")
       );
       expenseArray.push({ nome, valor });
+
+      const categoria = expense.dataset.categoria;
+      expenseArray.push({ nome, valor, categoria });
     });
 
     const saldo = parseFloat(
@@ -267,6 +302,7 @@ document.addEventListener("DOMContentLoaded", function () {
     if (expenses) {
       expenses.forEach((expense) => {
         const listItem = document.createElement("li");
+        listItem.dataset.categoria = expense.categoria
         listItem.innerHTML = `
             <span>${expense.nome}</span>
             <span class="amount">R$ ${expense.valor
@@ -303,4 +339,5 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 
   loadFromLocalStorage();
+  updateOverview();
 });

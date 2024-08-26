@@ -133,14 +133,14 @@ body {
   justify-content: center;
   align-items: center;
   width: 100%;
-  padding: 20px;
+  padding: 10px;
 }
 
 .expenses-content label {
   font-weight: 500;
   padding: 10px;
   width: 100%;
-  font-size: 18px;
+  font-size: 15px;
   font-weight: 500;
 }
 
@@ -242,25 +242,38 @@ body {
   font-size: 15px;
 }
 
-/* Grafico */
-.chart-container {
-  display: flex;
-  flex-direction: column;
+/* Tabela de Despesas */
+.overview-container {
+  margin-top: 20px;
   padding: 5px;
   width: 100%;
 }
 
-.chart-container h3 {
-  font-weight: 300;
-  font-size: 15px;
-  padding: 5px;
-  color: var(--color-segundary);
+.overview-container h3 {
+   font-weight: 300;
+   color: var(--color-segundary);
+   font-size: 16px;
 }
 
-.expense-grafic {
-  background: var(--color-segundary);
-  border-radius: 20px;
+.overview-table {
+  width: 100%;
+  margin-top: 5px;
 }
+
+.overview-table th, .overview-table td {
+  padding: 10px;
+  text-align: left;
+  border-radius: 10px;
+}
+
+.overview-table th {
+  background-color:var(--color-segundary);
+}
+
+.overview-table td {
+  background-color: var(--color-segundary);
+}
+
 
 /* modal confirmação */
 .modal {

@@ -10,11 +10,15 @@
       href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0"
     />
 
+    <!-- CNJS -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
     <!-- CSS -->
     <link rel="stylesheet" href="/CSS/style.css" />
 
     <!-- JS -->
     <script src="/JS/script.js" defer></script>
+
     <title>MyMoney- Gerencie suas Depesas</title>
   </head>
   <body>
@@ -102,12 +106,19 @@
       </div>
     </section>
 
-    <!-- grafico de despesas -->
-    <section class="chart-container">
-      <h3>Despesas por Categoria</h3>
-      <div class="expense-grafic">
-        <canvas id="expenseChart"></canvas>
-      </div>
+    <!-- Visão Geral das Despesas -->
+    <section class="overview-container">
+      <h3>Visão Geral das Despesas</h3>
+      <table class="overview-table">
+        <thead>
+          <tr>
+            <th>Categoria</th>
+            <th>Total Gasto (R$)</th>
+            <th>Porcentagem (%)</th>
+          </tr>
+        </thead>
+        <tbody id="overview-body"></tbody>
+      </table>
     </section>
 
     <!-- modal de confirmação -->
@@ -126,8 +137,8 @@
       <p>Pagamento realizado com sucesso!</p>
     </div>
 
-     <!-- Modal de Confirmação de Exclusão -->
-     <div id="delete-confirmation-modal" class="modal">
+    <!-- Modal de Confirmação de Exclusão -->
+    <div id="delete-confirmation-modal" class="modal">
       <div class="modal-content">
         <p>Tem certeza que deseja excluir esta despesa?</p>
         <div class="modal-buttons">
