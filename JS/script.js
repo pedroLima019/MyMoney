@@ -47,7 +47,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
       if (tipo === "saida") {
         const listItem = document.createElement("li");
-        listItem.dataset.categoria = categoria
+        listItem.dataset.categoria = categoria;
         listItem.innerHTML = `
           <span>${nome}</span>
           <span class="amount">R$ ${valor.toFixed(2).replace(".", ",")}</span>
@@ -264,8 +264,6 @@ document.addEventListener("DOMContentLoaded", function () {
           .textContent.replace("R$", "")
           .replace(",", ".")
       );
-      expenseArray.push({ nome, valor });
-
       const categoria = expense.dataset.categoria;
       expenseArray.push({ nome, valor, categoria });
     });
@@ -298,24 +296,25 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 
   function loadFromLocalStorage() {
-    const expenses = JSON.parse(localStorage.getItem("expenses"));
-    if (expenses) {
-      expenses.forEach((expense) => {
-        const listItem = document.createElement("li");
-        listItem.dataset.categoria = expense.categoria
-        listItem.innerHTML = `
-            <span>${expense.nome}</span>
-            <span class="amount">R$ ${expense.valor
-              .toFixed(2)
-              .replace(".", ",")}</span>
-            <div class="actions">
-              <button class="pay-btn">✅</button>
-              <button class="delete-btn">❌</button>
-            </div>
-        `;
-        document.querySelector(".expense-list").appendChild(listItem);
-      });
-    }
+    const expenses = JSON.parse(localStorage.getItem("expenses")) || [];
+
+    const expenseList = document.querySelector(".expense-list");
+
+    expenseList.innerHTML = ""
+
+    expenses.forEach((expense) => {
+      const listItem = document.createElement("li");
+      listItem.dataset.categoria = expense.categoria;
+      listItem.innerHTML = `
+        <span>${expense.nome}</span>
+        <span class="amount">R$ ${expense.valor.toFixed(2).replace(".", ",")}</span>
+        <div class="actions">
+          <button class="pay-btn">✅</button>
+          <button class="delete-btn">❌</button>
+        </div>
+      `;
+      expenseList.appendChild(listItem);
+    });
 
     const saldo = localStorage.getItem("saldo");
     const receitas = localStorage.getItem("receitas");

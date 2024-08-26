@@ -250,9 +250,9 @@ body {
 }
 
 .overview-container h3 {
-   font-weight: 300;
-   color: var(--color-segundary);
-   font-size: 16px;
+  font-weight: 300;
+  color: var(--color-segundary);
+  font-size: 16px;
 }
 
 .overview-table {
@@ -260,20 +260,20 @@ body {
   margin-top: 5px;
 }
 
-.overview-table th, .overview-table td {
+.overview-table th,
+.overview-table td {
   padding: 10px;
   text-align: left;
-  border-radius: 10px;
+  border-radius: 5px;
 }
 
 .overview-table th {
-  background-color:var(--color-segundary);
+  background-color: var(--color-segundary);
 }
 
 .overview-table td {
   background-color: var(--color-segundary);
 }
-
 
 /* modal confirmação */
 .modal {
@@ -364,3 +364,4 @@ body {
   width: 80px;
   cursor: pointer;
 }
+
