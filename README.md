@@ -18,6 +18,6 @@
 
 ## Como Rodar o Projeto
 
-1. **Clone o repositório:**
+ **Clone o repositório:**
    ```bash
    git clone https://github.com/seu-usuario/MyMoney.git
